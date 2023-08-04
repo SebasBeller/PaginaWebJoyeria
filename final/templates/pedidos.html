@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="py-5" >
+    <div class="container px-4 px-lg-5 mt-5">
+      <div class="row-cols-7 row-cols-md-14 row-cols-xl-8 justify-content-center">
+        <div class="col ">
+          <p><span class="h2">Tus pedidos: </span><span class="h4">Tienes {{pedidos | length}} pedidos</span></p>
+            {% for pedido in pedidos %}
+          <div class="card mb-4 bg-body-tertiary">
+            <div class="card-body p-5">
+  
+              <div class="row align-items-center text-center">
+                <div class="col-md-2">
+                  <img src="{{pedido.producto.imagen}}"
+                    class="img-fluid" alt="Generic placeholder image">
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-1">Nombre</p>
+                    <p class="lead fw-normal mb-4 ">{{pedido.producto.nombre}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Fecha</p>
+                    <p class="lead fw-normal mb-4 " >
+                       {{ pedido.fecha}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Cantidad</p>
+                    <p class="lead fw-normal mb-4 ">{{pedido.producto.cantidad}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Precio</p>
+                    <p class="lead fw-normal mb-4 ">{{pedido.producto.precio}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2 " >nro Targeta</p>
+                    <p class="lead fw-normal mb-4 ">{{pedido.targeta}}</p>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          {% endfor %}
+    
+  
+          <!-- <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-light btn-lg me-2">Continue shopping</button>
+            <button type="button" class="btn btn-primary btn-lg">Add to cart</button>
+          </div> -->
+  
+        </div>
+      </div>
+    </div>
+  </section>
+{%endblock content%}

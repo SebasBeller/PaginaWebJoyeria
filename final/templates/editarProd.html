@@ -1,0 +1,96 @@
+{% extends "indexAdmin.html" %}
+{% block content %}
+<section>
+    <div class="container">
+      <h1 class="text-center mt-5">Editar Producto</h1>
+      <form action="/guardarProducto" method="POST">
+        <input type="text" hidden name="form" value="formElimYEditProd">
+        <input type="text" hidden name="_id" value="{{producto._id}}">
+        <h6>Imagen</h6>
+        <div class="mb-3">
+            <img style="height: 300px; width: 300px;" src="{{producto.imagen}}" alt="Imagen del producto">
+          </div>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control"  name="nombre" value="{{producto.nombre}}" required pattern=".*\S+.*">
+        </div>
+        <div class="mb-3">
+          <label for="tiposMaterial" class="form-label">Tipo de Material</label>
+          <input type="text" class="form-control"  name="tipoMaterial" value="{{producto.tipoMaterial}}" required pattern=".*\S+.*">
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="color" class="form-label">Color</label>
+          <input type="text" class="form-control"  name="color" value="{{producto.color}}" required pattern=".*\S+.*">
+        </div>
+        <div class="mb-3">
+          <label for="precio" class="form-label">Precio</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" step="0.1"  class="form-control" min="1" name="precio" value="{{producto.precio}}" required pattern=".*\S+.*"> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="largo" class="form-label">Largo</label>
+            <div class="input-group">
+              <input type="number" step="0.1"  class="form-control" min="1" name="largo" value="{{producto.largo}}" required pattern=".*\S+.*">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="ancho" class="form-label">Ancho</label>
+            <div class="input-group">
+              <input type="number" step="0.1"  class="form-control" min="1" name="ancho" value="{{producto.ancho}}" required pattern=".*\S+.*">
+              <span class="input-group-text">cm</span>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <h6>Categorias</h6>
+          {% for categoria in categorias%}
+          <div class="form-check">
+           {%if producto.categoria==categoria.nombre %}
+            <input class="form-check-input" name="categoria" type="radio" value="{{categoria.nombre}}" id="flexCheckDefault" checked>
+            {% else %}
+            <input class="form-check-input" name="categoria" type="radio" value="{{categoria.nombre}}" id="flexCheckDefault">
+           {% endif %}
+            <label class="form-check-label" for="flexCheckDefault">
+              {{categoria.nombre}}
+            </label>
+          </div>
+          {% endfor %}
+          <!-- <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              Checked checkbox
+            </label>
+          </div> -->
+          
+        </div>
+        <div class="mb-3">
+          <label for="cantidadEnStock"  class="form-label">Cantidad en Stock</label>
+          <input type="number" class="form-control" min="1" name="cantidadEnStock"  value="{{producto.cantidadStock}}" required pattern=".*\S+.*">
+        </div>
+        <div class="mb-3">
+          <label for="imagen" class="form-label">Imagen</label>
+          <input type="text" class="form-control" name="imagen" value="{{producto.imagen}}" required pattern=".*\S+.*">
+        </div>
+        <div class="mb-3">
+          <label for="descuento" class="form-label">Descuento</label>
+          <div class="input-group">
+            {% if producto.descuento %}
+            <input type="number" step="0.1"  class="form-control" min="1" max="100" name="descuento" value="{{producto.descuento}}" >
+            {%else%}
+            <input type="number" step="0.1"  class="form-control" min="1" max="100" name="descuento" placeholder="Sin Descuento" >
+            {% endif %}
+            <span class="input-group-text">%</span>
+          </div>
+        </div>
+        <div class="d-grname">
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  {% endblock content %}

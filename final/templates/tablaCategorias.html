@@ -1,0 +1,35 @@
+{% extends "indexAdmin.html" %}
+{% block content %}
+<section>
+<div class="container">
+    <h2>Tabla de Información de Categorias</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered border-dark  "  >
+            <thead class="table-light border-dark">
+            
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Eliminar</th>
+                <th>Modificar</th>
+
+
+            </tr>
+        </thead>
+    <tbody>
+
+        {% for categoria in categorias %}
+        <tr>
+                <input type="text" hidden name="_id" value="{{categoria._id}}">
+                <td>{{categoria.nombre}}</td>
+                <td>{{categoria.descripcion}}</td>
+                <td><a class="text-light" href="/formEditarCategoria?_id={{categoria._id}}">Editar</a></td>
+                <td><button class="btn-block btn-light" ><a class="text-dark" href="/eliminarCategoria?_id={{categoria._id}}" class="text-decoration-none"> Eliminar </a> </button></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+</section>
+{% endblock content %}

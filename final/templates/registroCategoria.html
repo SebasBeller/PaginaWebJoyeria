@@ -1,0 +1,24 @@
+{% extends "indexAdmin.html" %}
+{% block content %}
+<section>
+    <div class="container">
+      <h1 class="text-center mt-5">Registro de Categoria</h1>
+      <form action="/guardarCategoria" method="POST">
+        <input type="text" hidden name="formulario" value="formRegistrarCategoria">
+        <div class="mb-3">
+          <input type="text" hidden name="form" value="formRegistrarProd">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" required name="nombre" placeholder="Ingrese el nombre de la categoria">
+        </div>
+        <div class="mb-3">
+          <label for="tiposMaterial" class="form-label">descripcion</label>
+          <input type="text" class="form-control" required name="descripcion" placeholder="Ingrese la descripcion">
+          </select>
+        </div>
+        <div class="d-grname">
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  {% endblock content %}

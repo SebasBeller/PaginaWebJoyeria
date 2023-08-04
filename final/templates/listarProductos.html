@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            {% for producto in productos %}
+            <div class="col mb-5">
+                <a class="text-dark text-decoration-none" href="/infoProducto?_id={{producto._id }}">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{producto.imagen}}" alt="imagenProducto" />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{producto.nombre}}</h5>
+                                <!-- Product reviews-->
+                                <!-- <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div> -->
+                                <!-- Product price-->
+                                {%if producto.descuento%}
+                                <span class="text-muted text-decoration-line-through">{{producto.precio |  round(1)}}$</span>
+                                <br>{{(producto.precio*(1-(producto.descuento/100)))| round(1)}}$
+                                {% else %}
+                                {{producto.precio |  round(1)}}$
+
+                                {%endif%}
+                            </div>
+                </a>
+            </div>
+            <!-- Product actions-->
+            <!-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                    </div> -->
+        </div>
+    </div>
+    {%endfor%}
+    </div>
+    </div>
+</section>
+{% endblock content %}

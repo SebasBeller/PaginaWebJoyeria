@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="py-5" >
+  <form action="/confirmarProdsCarrito" method="POST">
+    <div class="container px-4 px-lg-5 mt-5">
+      <div class="row gx-5 gx-lg-10 row-cols-7 row-cols-md-10 row-cols-xl-8 justify-content-center">
+        <div class="col-10">
+  
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-normal mb-0 text-black">Carrito de Compras</h3>
+          </div>
+          {% for producto in productosCarrito %}
+          
+        <input type="hidden" name="producto" value="{{ producto }}">
+          <div class="card rounded-3 mb-4 bg-light" >
+            <div class="card-body p-4">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                  <img  class="img-fluid rounded-3" src="{{producto.imagen}}" alt="Cotton T-shirt">
+                </div>   
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                  <p class="lead fw-normal mb-2">{{producto.nombre}}</p>
+                  <!-- <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p> -->
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                  <p>Cantidad:</p>
+                  <label class="form-label text-black" for="typeText">{{producto['cantidad']}}</label>
+
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                  <h5 class="mb-0">{{producto.precio}}</h5>
+                </div>
+                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                  <a href="/eliminarProdCarrito?_id={{producto._id}}" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                </div> 
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <input type="text" hidden name="totalAPagar" value="{{totalAPagar}}">
+            <h6 class="fw-normal mb-0 text-black">Total:</h6>
+            <label  >{{totalAPagar}}$</label>
+          </div>
+          
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h6 class="fw-normal mb-0 text-black">Cantidad de Productos:</h6>
+            <input type="text" hidden name="cantProductos" value="{{cantidad}}">
+            
+            <label  >{{cantidad}}</label>
+          </div>
+        <div>
+        <button type="submit" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+{% endblock content %}

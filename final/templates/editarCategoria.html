@@ -1,0 +1,25 @@
+{% extends "indexAdmin.html" %}
+{% block content %}
+<section>
+    <div class="container">
+      <h1 class="text-center mt-5">Editar Categoria</h1>
+      <form action="/guardarCategoria" method="POST">
+        <input type="text" hidden name="formulario" value="formTablaCategorias">
+        <input type="text" hidden name="_id" value="{{categoria._id}}">
+        <div class="mb-3">
+          <input type="text" hidden name="form" value="formRegistrarProd">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" required pattern=".*\S+.*"  name="nombre" value="{{categoria.nombre}}">
+        </div>
+        <div class="mb-3">
+          <label for="tiposMaterial" class="form-label">descripcion</label>
+          <input type="text" class="form-control" required pattern=".*\S+.*" name="descripcion" value="{{categoria.descripcion}}">
+          </select>
+        </div>
+        <div class="d-grname">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  {% endblock content %}
